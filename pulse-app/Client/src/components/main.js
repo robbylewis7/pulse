@@ -58,7 +58,7 @@ export default class Main extends React.Component {
 
     render() {
         const teams = this.state.teams.map((team, index) => (
-            <li className="list-wrapper" key={index}>
+            <li className="teams" key={index}>
                 <Teams {...team} />
             </li>
         ));
@@ -68,7 +68,7 @@ export default class Main extends React.Component {
                 <h2>{this.props.title}</h2>
                 <ul className="lists">
                     {teams}
-                    <li className="add-list-wrapper">
+                    <li className="addTeams">
                         <AddTeam
                             type="team"
                             onAdd={team => this.addTeam(team)}
