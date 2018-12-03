@@ -61,27 +61,27 @@ app.get('/teams', (req, res) => {
 });
 
 
-// app.get('/teams/user/:user', (req, res) => { 
+app.get('/teams/:user', (req, res) => { 
+  Teams.find({user: req.params.user})
+      .then(teams => {
+            res.status(200).json({
+            teams: teams.map(team => team.serialize())
+
+      });
+
+    })
+      .catch(err => { 
+      console.error(err); res.status(500).json({ message: 'Internal server error' }); }); });
+
+
+// app.get('/teams/:user', (req, res) => {
 //   Teams.find({user: req.params.user})
-//       .then(teams => {
-//             res.status(200).json({
-//             teams: teams.map(team => team.serialize())
-
-//       });
-
-//     })
-//       .catch(err => { 
-//       console.error(err); res.status(500).json({ message: 'Internal server error' }); }); });
-
-
-app.get('/teams/:user', (req, res) => {
-  Teams.find(req.params.user)
-    .then(team => res.json(team.serialize()))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ message: 'Internal server error' });
-    });
-});
+//     .then(team => res.json(team.serialize()))
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({ message: 'Internal server error' });
+//     });
+// });
 
 app.post('/teams', (req, res) => {
 
@@ -117,7 +117,7 @@ Teams.find().then(team => {
     
     
     
-app.put('/teams/:id', (req, res) => {
+app.put('/teams/:user', (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message =
       `Request path id (${req.params.id}) and request body id ` +
