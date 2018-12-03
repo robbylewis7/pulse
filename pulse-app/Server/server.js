@@ -5,7 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const cors = require('cors');
-const {PORT, DATABASE_URL, CLIENT_ORIGIN} = require('./config');
+const {PORT, DATABASE_URL} = require('./config');
 const {Teams} = require('./models');
 const passport = require('passport');
 
@@ -15,7 +15,7 @@ app.use(express.static('public'));
 app.use(express.json());
 
 app.use(cors({
-    origin: CLIENT_ORIGIN
+    origin: 'http://localhost:3000'
 }));
 
 
@@ -47,11 +47,6 @@ app.use(function (req, res, next) {
 //////////////////
 
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
-
-
 app.get('/teams', (req, res) => {
       Teams.find()
         .then(teams => {
@@ -66,31 +61,28 @@ app.get('/teams', (req, res) => {
 });
 
 
-//        
-//        
-//app.get('/logs/:id', jwtAuth, (req, res) => {
-//  Log.findById(req.params.id)
-//    .then(log => res.json(log.serialize()))
-//    .catch(err => {
-//      console.error(err);
-//      res.status(500).json({ message: 'Internal server error' });
-//    });
-//});
-//
-//app.get('/logs/user/:user', (req, res) => { 
-//    Log.find({user: req.params.user})
-//    .sort({ date: -1 })
-//        .then(logs => {
-//              res.status(200).json({
-//              logs: logs.map(log => log.serialize())
-//
-//        });
-//
-//      })
-//        .catch(err => { 
-//        console.error(err); res.status(500).json({ message: 'Internal server error' }); }); });
-//
-//
+// app.get('/teams/user/:user', (req, res) => { 
+//   Teams.find({user: req.params.user})
+//       .then(teams => {
+//             res.status(200).json({
+//             teams: teams.map(team => team.serialize())
+
+//       });
+
+//     })
+//       .catch(err => { 
+//       console.error(err); res.status(500).json({ message: 'Internal server error' }); }); });
+
+
+app.get('/teams/:user', (req, res) => {
+  Teams.find(req.params.user)
+    .then(team => res.json(team.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
+
 app.post('/teams', (req, res) => {
 
   const requiredFields = ['team', 'user'];
@@ -104,9 +96,9 @@ app.post('/teams', (req, res) => {
   }
 
 Teams.find().then(team => {
-//    if (team.length !== 0) {
-//      return res.status(400).send('This team already exists');
-//    } else {
+  //  if (user.length !== 0) {
+  //    return res.status(400).send('This team already exists');
+  //  } else {
       Teams
         .create({
             team: req.body.team,
@@ -171,7 +163,7 @@ app.put('/teams/:id', (req, res) => {
     
     
     
-app.delete('/teams/:id', (req, res) => {
+app.delete('/teams/:user', (req, res) => {
   Teams.findByIdAndRemove(req.params.id)
     .then(log => res.status(204).end())
     .catch(err => {
