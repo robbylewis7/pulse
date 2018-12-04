@@ -163,7 +163,7 @@ app.put('/teams/:user', (req, res) => {
     
     
     
-app.delete('/teams/:user', (req, res) => {
+app.delete('/teams/:user/:id', (req, res) => {
   Teams.findByIdAndRemove(req.params.id)
     .then(log => res.status(204).end())
     .catch(err => {
