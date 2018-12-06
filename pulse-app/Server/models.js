@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const teamSchema = new Schema({
     team: [String],
-    user: String
+    user: {type: String, unique: true, required: true}
 })
 
 
