@@ -7,10 +7,16 @@ import './main.css';
 export default class Main extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            teams: []
+            teams: [],
+            editing: false
         };
+    }
+
+    setEditing(editing) {
+        this.setState({
+            editing
+        });
     }
 
     addTeam(team) {
@@ -68,23 +74,23 @@ export default class Main extends React.Component {
         });
     }
 
-    // componentDidMount(){
-    //     fetch('http://localhost:8080/teams')
-    //     .then(res => {
-    //         if (!res.ok) { return Promise.reject(res.statusText); }
-    //         return res.json()
-    //     })
-    //     .then(data => {
-    //         this.setState({
-    //             teams: data.teams
-    //         })
-    //         console.log(data);
-    //     })
-    //     .then(error => {
-    //         console.log(error);
-    //     })
-    //     ;
-    // }
+    componentDidMount(){
+        fetch('http://localhost:8080/teams')
+        .then(res => {
+            if (!res.ok) { return Promise.reject(res.statusText); }
+            return res.json()
+        })
+        .then(data => {
+            this.setState({
+                teams: data.teams
+            })
+            console.log(data);
+        })
+        .then(error => {
+            console.log(error);
+        })
+        ;
+    }
 
     render() {
         const teams = this.state.teams.map((team, index) => (
@@ -95,21 +101,18 @@ export default class Main extends React.Component {
 
         return (
             <div className="board">
-                <h2>{this.props.title}</h2>
                 <ul className="lists">
-                    {teams}
                     <li className="addTeams">
                         <AddTeam
-                            type="team"
                             onAdd={team => this.addTeam(team)}
+                            onEdit={editing => this.setEditing(editing)}
                         />
                     </li>
+                    {teams}
                 </ul>
             </div>
         );
     }
 }
 
-Teams.defaultProps = {
-    title: 'Pulse'
-};
+

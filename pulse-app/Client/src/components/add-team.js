@@ -6,62 +6,40 @@ import './add-team.css';
 export default class AddTeam extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            editing: true
-        }
     }
-
-
 
 
     onSubmit(event) {
         event.preventDefault();
-        const checked = document.querySelector('.input:checked').value;
-        if (checked && this.props.onAdd) {
-            this.props.onAdd(checked);
-        }
-        document.querySelector('.input:checked').value = '';
-    }
-
-
-
-    setEditing(editing) {
-        this.setState({
-            editing
+        var checked = document.querySelectorAll('.input:checked'); 
+        var selectedTeams = Array.from(checked).map(function(team){
+            return team.value
         });
+
+        console.log('checked', selectedTeams)
+
+        if (selectedTeams && this.props.onAdd) {
+            this.props.onAdd(selectedTeams);
+        }
     }
+
+    
+    // setEditing(editing) {
+    //     this.setState({
+    //         editing
+    //     });
+    // }
 
     
 
     render() {
 
-
-    var teams = []; 
-    var inputs = document.querySelectorAll('input'); 
-        inputs.forEach(function(item) { 
-        item.addEventListener('change', function(e) {
-        console.log(e.target.value, this.checked) 
-            if(this.checked) { 
-            teams.push(e.target.value);
-            } else {
-            teams.splice( teams.indexOf(e.target.value), 1 ); 
-        }
-        console.log(teams); 
-      })
-    })
     
-    var form = document.querySelector('.checkbox-form');
-    if(form){
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      console.log(teams)
-    })}
-
         
-        if (!this.state.editing) {
+        if (!this.props.editing) {
             return (
                 <div className="add-button"
-                    onClick={() => this.setEditing(true)}>
+                    onClick={() => this.props.onEdit(true)}>
                     <a href="#">Add your favorite teams</a>
                 </div>
             );
@@ -899,7 +877,7 @@ return (
 
 
   <div className="form-group submitButton" >
-    <button className="btn btn-primary">
+    <button className="btn btn-primary" >
       Submit
     </button>
 
