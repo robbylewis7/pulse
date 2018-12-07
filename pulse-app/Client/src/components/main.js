@@ -17,27 +17,27 @@ export default class Main extends React.Component {
         this.setState({
             teams: [...this.state.teams, {team}]
         });
-        // console.log('Teams',team)
-        //  fetch('http://localhost:8080/teams',{
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         team: team,
-        //         user: "james"
-        //     }),
-        //     headers: {
-        //       "Content-type": "application/json; charset=UTF-8"
-        //     }
-        // })
-        // .then(res => {
-        //     if (!res.ok) { return Promise.reject(res.statusText); }
-        //     return res.json()
-        // })
-        // .then(data => {
-        //     console.log(data);
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // });
+        console.log('Teams',team)
+         fetch('http://localhost:8080/teams',{
+            method: "POST",
+            body: JSON.stringify({
+                team: team,
+                user: "james"
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+        .then(res => {
+            if (!res.ok) { return Promise.reject(res.statusText); }
+            return res.json()
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
 

@@ -3,3 +3,25 @@ a{
     color: #4a4a4a;
     font-size: 18px;
 }
+
+#leagues{
+    display: flex;
+    justify-content: space-between;
+}
+
+.submitButton{
+    text-align: center;
+    margin: 20px;
+}
+
+.btn-primary{
+    width: 30%;
+    background: white;
+    color: #4a4a4a;
+}
+
+
+
+/* .league{
+    margin: 0 50px;
+} */
