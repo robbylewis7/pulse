@@ -52,13 +52,17 @@ app.get('/teams', (req, res) => {
         .then(teams => {
             res.status(200).json({
             teams: teams.map(team => team.serialize())
-      });
+      })
+      let teamsForNews = teams[0].team.toString();
+      let teamsForNewsString = teamsForNews.replace(/,/g, ' OR ');
+      console.log(teamsForNewsString);
     })
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: 'Internal server error' });
     });
 });
+
 
 
 app.get('/teams/:user', (req, res) => { 
@@ -74,14 +78,7 @@ app.get('/teams/:user', (req, res) => {
       console.error(err); res.status(500).json({ message: 'Internal server error' }); }); });
 
 
-// app.get('/teams/:user', (req, res) => {
-//   Teams.find({user: req.params.user})
-//     .then(team => res.json(team.serialize()))
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({ message: 'Internal server error' });
-//     });
-// });
+
 
 app.post('/teams', (req, res) => {
 
@@ -117,7 +114,7 @@ Teams.find().then(team => {
     
     
     
-app.put('/teams/:user', (req, res) => {
+app.put('/teams/:id', (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message =
       `Request path id (${req.params.id}) and request body id ` +
@@ -175,6 +172,10 @@ app.delete('/teams/:id', (req, res) => {
 app.use('*', function(req, res) {
   res.status(404).json({ message: 'Not Found' });
 });
+
+//News API
+
+
 
     
     

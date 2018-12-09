@@ -4,9 +4,20 @@ a{
     font-size: 18px;
 }
 
+#cancel{
+    background: none;
+    border: none;
+    float: left;
+}
+
+#cancel:hover{
+    cursor: pointer;
+}
+
 #leagues{
     display: flex;
     justify-content: space-between;
+    clear: both;
 }
 
 .submitButton{

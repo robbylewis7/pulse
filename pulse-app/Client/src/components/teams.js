@@ -9,16 +9,20 @@ export default class Teams extends React.Component {
 
     render() {
         let teamString = this.props.team.toString();
-        let teams = teamString.split(',').join("\r\n");
+        console.log(this.props.team.length)
+        let teams = teamString.split(',');
+            for (var t in teams) {
+            var newElement = document.createElement('div');
+            newElement.id = teams[t]; newElement.className = "teams";
+            newElement.innerHTML = teams[t];
+            document.body.appendChild(newElement);
+}
         return (
             <div>
-                <h3>{teams}</h3>
             </div>
         );
     }
 }
-
-
 
 Teams.defaultProps = {
     team: ''

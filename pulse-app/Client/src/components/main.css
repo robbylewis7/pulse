@@ -1,10 +1,34 @@
 .lists {
     display: block;
-    /* width: 20%; */
+    
+
 }
 
 .teams{
+    color: #4a4a4a;
     padding: 10px;
-    margin: 5px 0;
+    margin-top: 10px;
+    margin-left: 140px;
     border-radius: 10px;
+    width: 20%;
+    border: 2px solid #4a4a4a;
+
+}
+
+#cancel{
+    margin-bottom: 20px;
+}
+
+#header{
+    margin-top: 50px;
+    margin-left: 140px;
+    padding-bottom: 40px;
+}
+
+.add-button{
+    margin-left: 140px;
+}
+
+li.teams{
+    display: none;
 }
