@@ -9,17 +9,21 @@ export default class Teams extends React.Component {
 
     render() {
         let teamString = this.props.team.toString();
-        console.log(this.props.team.length)
-        let teams = teamString.split(',');
-            for (var t in teams) {
-            var newElement = document.createElement('div');
-            newElement.id = teams[t]; newElement.className = "teams";
-            newElement.innerHTML = teams[t];
-            document.body.appendChild(newElement);
-}
+        console.log(this.props.team)
+        
+        let test = this.props.team;
+        console.log(test);
+        let test2 = test.map((team, index) => {
+           return <li key={index} className={"teams"}>{team} </li>
+                             
+        });
+        console.log(test2);
+        
+
         return (
-            <div>
-            </div>
+            <>
+                {test2}
+            </>
         );
     }
 }

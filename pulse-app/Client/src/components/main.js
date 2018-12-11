@@ -105,11 +105,14 @@ export default class Main extends React.Component {
         });
     }
 
+   
+
     getNews(){
         var url = 'https://newsapi.org/v2/everything?' +
-        'q=Lakers&Knicks&' +
+        'q="Los Angeles Dodgers" OR "New York Yankees" OR "Los Angeles Kings"&' +
         'from=2018-12-05&' +
-        'sortBy=date&' +
+        'languege=en&' +
+        'sortBy=relevancy&' +
         'apiKey=508b1fda120441e68b78ef8483883676';
 
         var req = new Request(url);
@@ -150,9 +153,7 @@ export default class Main extends React.Component {
 
     render() {
         const teams = this.state.teams.map((team, index) => (
-            <li className="teams" key={index}>
                 <Teams {...team} />
-            </li>
         ));
 
         return (
