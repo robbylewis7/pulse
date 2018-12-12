@@ -35,10 +35,13 @@ export default class AddTeam extends React.Component {
         this.setState({
             editing,
         });
+        this.props.onEdit(!editing)
     }
 
     handleCheck(){
-        this.setState({checked: !this.state.checked});
+        this.setState({
+            checked: !this.state.checked
+        });
     }
 
     refreshPage() {
@@ -175,5 +178,3 @@ return (
 );
 }
 }
-
-

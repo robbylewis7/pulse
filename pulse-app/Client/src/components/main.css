@@ -1,4 +1,4 @@
-.lists {
+lists {
     display: block;
 }
 
@@ -12,6 +12,25 @@
     border: 2px solid #4a4a4a;
 
 }
+
+.teams:hover{
+    color: #CDCDCD;
+    
+}
+
+.teams:hover img{
+    display: block;
+    cursor: pointer;
+}
+
+.deleteIcon{
+    height: 30px;
+    width: 30px;
+    float: right;
+    display: none;
+    
+}
+
 
 #cancel{
     margin-bottom: 20px;

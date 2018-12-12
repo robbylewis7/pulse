@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Header from './header';
 import Teams from './teams';
 import AddTeam from './add-team';
+import Articles from './articles';
 import './main.css';
 
 export default class Main extends React.Component {
@@ -10,7 +11,8 @@ export default class Main extends React.Component {
         super(props);
 
         this.state = {
-            teams: []
+            teams: [],
+            hide: true,
         };
     }
 
@@ -18,6 +20,12 @@ export default class Main extends React.Component {
         this.setState({
             editing
         });
+    }
+
+    editTeams(hide){
+        this.setState({
+            hide
+        })
     }
 
     addTeam(team) {
@@ -82,37 +90,36 @@ export default class Main extends React.Component {
         this.setState({
             teams: [...this.state.teams, {team}]
         });
-        console.log('Teams',team)
-         fetch('http://localhost:8080/teams/james',{
-            method: "DELETE",
-            // body: JSON.stringify({
-            //     team: team,
-            //     user: "james"
-            // }),
-            headers: {
-              "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-        .then(res => {
-            if (!res.ok) { return Promise.reject(res.statusText); }
-            return res.json()
-        })
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+//        console.log('Teams',team)
+//         fetch('http://localhost:8080/teams/james',{
+//            method: "DELETE",
+//            // body: JSON.stringify({
+//            //     team: team,
+//            //     user: "james"
+//            // }),
+//            headers: {
+//              "Content-type": "application/json; charset=UTF-8"
+//            }
+//        })
+//        .then(res => {
+//            if (!res.ok) { return Promise.reject(res.statusText); }
+//            return res.json()
+//        })
+//        .then(data => {
+//            console.log(data);
+//        })
+//        .catch(error => {
+//            console.log(error);
+//        });
     }
 
    
 
-    getNews(){
+    getNews(teamsForNewsString){
         var url = 'https://newsapi.org/v2/everything?' +
-        'q="Los Angeles Dodgers" OR "New York Yankees" OR "Los Angeles Kings"&' +
+        `q="${teamsForNewsString}"&` +
         'from=2018-12-05&' +
-        'languege=en&' +
-        'sortBy=relevancy&' +
+        'languege=eg&' +
         'apiKey=508b1fda120441e68b78ef8483883676';
 
         var req = new Request(url);
@@ -120,14 +127,15 @@ export default class Main extends React.Component {
         fetch(req)
         .then(function(res) {
             return res.json()
+        }).then(data => this.setState({
+            articles: data.articles
         })
-        .then(function(data){
-            console.log(data.articles)
-        })
+        )
+
     }
 
     componentDidMount(){
-        this.getNews();
+        
         fetch('http://localhost:8080/teams')
         .then(res => {
             if (!res.ok) { return Promise.reject(res.statusText); }
@@ -139,6 +147,11 @@ export default class Main extends React.Component {
                 id: data.teams[0].id
             })
             console.log(data);
+            let teams = data.teams[0].team.toString();
+             let teamsForNewsString = teams.replace(/,/g, '" OR "');
+            
+            console.log(teamsForNewsString);
+            this.getNews(teamsForNewsString);
         })
         .catch(error => {
             console.log(error);
@@ -153,11 +166,10 @@ export default class Main extends React.Component {
 
     render() {
         const teams = this.state.teams.map((team, index) => (
-                <Teams {...team} />
-        ));
+                <Teams {...team} onDelete={team => this.deleteTeam(team)}  />));
 
         return (
-            <div className="board">
+            <div className="teamList">
                 <Header />
                     <ul className="lists">
                         <li className="addTeams">
@@ -165,14 +177,19 @@ export default class Main extends React.Component {
                                 onAdd={team => this.addTeam(team)}
                                 onUpdate={team => this.updateTeam(team)}
                                 savedTeams={this.state.teams[0]}
+                                onEdit={hide => this.editTeams(hide)}
                             />
 
                         </li>
-                        {teams}
+                    {this.state.hide &&
+                        <>
+                            {teams}
+                        </>
+                    }
                     </ul>
+                    <Articles />
+
             </div>
         );
     }
 }
-
-
