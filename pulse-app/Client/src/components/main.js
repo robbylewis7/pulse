@@ -171,24 +171,27 @@ export default class Main extends React.Component {
         return (
             <div className="teamList">
                 <Header />
-                    <ul className="lists">
-                        <li className="addTeams">
-                            <AddTeam
-                                onAdd={team => this.addTeam(team)}
-                                onUpdate={team => this.updateTeam(team)}
-                                savedTeams={this.state.teams[0]}
-                                onEdit={hide => this.editTeams(hide)}
-                            />
+                    <div id = "mainContent">         
+                        <ul className="lists">
+                            <li className="addTeams">
+                                <AddTeam
+                                    onAdd={team => this.addTeam(team)}
+                                    onUpdate={team => this.updateTeam(team)}
+                                    savedTeams={this.state.teams[0]}
+                                    onEdit={hide => this.editTeams(hide)}
+                                />
 
-                        </li>
-                    {this.state.hide &&
-                        <>
-                            {teams}
-                        </>
-                    }
-                    </ul>
-                    <Articles />
-
+                            </li>
+                        {this.state.hide &&
+                            <>
+                                {teams}
+                            </>
+                        }
+                        </ul>
+                        {this.state.hide &&
+                        <Articles />
+                        }
+                    </div>
             </div>
         );
     }

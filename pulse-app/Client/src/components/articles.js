@@ -1,4 +1,5 @@
 import React from 'react';
+import './articles.css';
 
 
 export default class Articles extends React.Component {
@@ -16,6 +17,7 @@ export default class Articles extends React.Component {
         `q="${teamsForNewsString}"&` +
         'from=2018-12-05&' +
         'languege=eg&' +
+        'pageSize=100&' +
         'apiKey=508b1fda120441e68b78ef8483883676';
 
         var req = new Request(url);
@@ -60,15 +62,24 @@ export default class Articles extends React.Component {
     render() {
 
         const {articles} = this.state;
-        let test = articles.map((article)=>{
-            return console.log(article)
+        console.log(articles)
+        let test = articles.map((article, index)=>{
+            return <div className = "article">
+
+                        <div className = "content">  
+                            <a href={article.url} id = "articleLink">
+                                <p className="articleTitle">{article.title}</p>
+                                <img src={article.urlToImage} className = "articleImg"></img>
+                            </a>
+                        </div>   
+                    </div>
         })
 
        
 
         return (
             <div className = "articles">
-
+               {test}
             </div>
         );
     }
