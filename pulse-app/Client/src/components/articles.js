@@ -11,12 +11,19 @@ export default class Articles extends React.Component {
         }
     }
 
+    
 
     getNews(teamsForNewsString){
+        let fromDate = new Date(); 
+        let x = 5
+        fromDate.setDate(fromDate.getDate() - x);
+
+        console.log(fromDate);
         var url = 'https://newsapi.org/v2/everything?' +
         `q="${teamsForNewsString}"&` +
-        'from=2018-12-05&' +
+        `from=${fromDate}&` +
         'languege=eg&' +
+        'sortBy=publishedAt&' +
         'pageSize=100&' +
         'apiKey=508b1fda120441e68b78ef8483883676';
 
@@ -67,7 +74,9 @@ export default class Articles extends React.Component {
             return <div className = "article">
 
                         <div className = "content">  
-                            <a href={article.url} id = "articleLink">
+                            <a href={article.url} id = "articleLink" target="_blank">
+                            <p className="source">{article.source.name}</p>
+
                                 <p className="articleTitle">{article.title}</p>
                                 <img src={article.urlToImage} className = "articleImg"></img>
                             </a>

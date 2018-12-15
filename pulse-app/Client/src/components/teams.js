@@ -1,5 +1,6 @@
 import React from 'react';
 import Delete from './delete.png';
+import './teams.css'
 import teamList from './teamList';
 
 export default class Teams extends React.Component {
@@ -14,33 +15,64 @@ export default class Teams extends React.Component {
     
 
     render() {
-        let teamString = this.props.team.toString();
-        console.log(this.props.team)
-        
-        let test = this.props.team;
-        console.log(test);
-        let test2 = test.map((team, index) => {
-            console.log(teamList.NBA.team || teamList.MLB.team || teamList.NFL.team === team)
-           return <li key={index} className={"teams"}>{team} 
-           
-           <img src={Delete} className = "deleteIcon" onClick={(e) => this.click(e)}></img> </li>
-            
-                             
+
+        let teams = this.props.team;
+        let aggLeagues = [];
+
+        teamList.NBA.map((team) => {
+            aggLeagues.push(team);
         });
-        console.log(test2);
+
+        teamList.MLB.map((team) => {
+            aggLeagues.push(team);
+        });
+
+        teamList.NFL.map((team) => {
+            aggLeagues.push(team);
+        });
+
+        teamList.NHL.map((team) => {
+            aggLeagues.push(team);
+        });
         
+
+
+
+ 
+
+        let team = teams.map((team, index) => {
+
+            let teamIndex = aggLeagues.map(function(team){
+
+                return team.team;
+
+            }).indexOf(team); 
+
+
+
+
+
+
+
+           return <li key={index} className={"teams"}>{team}
+            
+           <img src={aggLeagues[teamIndex].logo} className="teamIconList"></img>
+
+
+           
+           </li>                
+
+        });
 
         return (
+
             <>
-                
-                {test2}
-                        
+
+                {team}
 
             </>
+
         );
+
     }
 }
-
-Teams.defaultProps = {
-    team: ''
-};

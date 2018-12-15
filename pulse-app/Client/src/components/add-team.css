@@ -23,6 +23,7 @@ h2{
 #cancel:hover{
     cursor: pointer;
 }
+
 #addTeam{
     background: #70AE6E;
     border-radius: 560%;
@@ -33,6 +34,7 @@ h2{
 
 #addTeam:hover{
     cursor: pointer;
+    background: #4a4a4a;
 }
 
 
@@ -46,13 +48,19 @@ h2{
     width: 40px;
     height: 40px;
 }
+
 #leagues{
     display: flex;
     justify-content: space-between;
     clear: both;
+    width: 100%;
     border: 1px solid rgba(74, 74, 74, .5);
-    padding: 25px;
+    padding: 50px;
 }
+
+/* .league{
+    margin: 0 10px;
+} */
 
 .submitButton{
     text-align: center;
