@@ -60,6 +60,7 @@ export default class AddTeam extends React.Component {
                 </div>
             );
         }
+       
        let savedTeams = this.props.savedTeams.team;
        console.log(savedTeams);
        let nbaTeams =  teamList.NBA.map((team, index) => {

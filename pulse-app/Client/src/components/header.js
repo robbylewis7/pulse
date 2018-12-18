@@ -11,8 +11,6 @@ export default class Header extends React.Component {
     render() {
         return (
             <div id = "header">
-                            <h1 id = "title">Pulse</h1>
-
                 <img src={Pulse} id="logo"></img>
             </div>
         );

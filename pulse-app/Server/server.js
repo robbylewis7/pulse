@@ -19,8 +19,8 @@ app.use(cors({
 }));
 
 
-//const { router: usersRouter } = require('./users');
-//const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+const { router: usersRouter } = require('./users');
+// const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 
 app.use(function (req, res, next) {
