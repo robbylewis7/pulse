@@ -28,32 +28,32 @@ export default class Main extends React.Component {
         })
     }
 
-    addTeam(team) {
-        this.setState({
-            teams: [...this.state.teams, {team}]
-        });
-        console.log('Teams',team)
-         fetch('http://localhost:8080/teams',{
-            method: "POST",
-            body: JSON.stringify({
-                team: team,
-                user: "james"
-            }),
-            headers: {
-              "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-        .then(res => {
-            if (!res.ok) { return Promise.reject(res.statusText); }
-            return res.json()
-        })
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    }
+    // addTeam(team) {
+    //     this.setState({
+    //         teams: [...this.state.teams, {team}]
+    //     });
+    //     console.log('Teams',team)
+    //      fetch('http://localhost:8080/teams',{
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             team: team,
+    //             user: "james"
+    //         }),
+    //         headers: {
+    //           "Content-type": "application/json; charset=UTF-8"
+    //         }
+    //     })
+    //     .then(res => {
+    //         if (!res.ok) { return Promise.reject(res.statusText); }
+    //         return res.json()
+    //     })
+    //     .then(data => {
+    //         console.log(data);
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //     });
+    // }
 
 
 
@@ -63,11 +63,11 @@ export default class Main extends React.Component {
             teams: [...this.state.teams, {team}]
         });
         console.log('Teams',team)
-         fetch('http://localhost:8080/teams/'+this.state.id,{
+         fetch('http://localhost:8080/teams/'+localStorage.getItem('username'),{
             method: "PUT",
             body: JSON.stringify({
                 team: team,
-                id: this.state.id
+                user: localStorage.getItem('username')
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8"
@@ -86,32 +86,7 @@ export default class Main extends React.Component {
     }
 
 
-    deleteTeam(team) {
-        this.setState({
-            teams: [...this.state.teams, {team}]
-        });
-//        console.log('Teams',team)
-//         fetch('http://localhost:8080/teams/james',{
-//            method: "DELETE",
-//            // body: JSON.stringify({
-//            //     team: team,
-//            //     user: "james"
-//            // }),
-//            headers: {
-//              "Content-type": "application/json; charset=UTF-8"
-//            }
-//        })
-//        .then(res => {
-//            if (!res.ok) { return Promise.reject(res.statusText); }
-//            return res.json()
-//        })
-//        .then(data => {
-//            console.log(data);
-//        })
-//        .catch(error => {
-//            console.log(error);
-//        });
-    }
+
 
    
 
@@ -175,7 +150,7 @@ export default class Main extends React.Component {
                         <ul className="lists">
                             <li className="addTeams">
                                 <AddTeam
-                                    onAdd={team => this.addTeam(team)}
+                                    // onAdd={team => this.addTeam(team)}
                                     onUpdate={team => this.updateTeam(team)}
                                     savedTeams={this.state.teams[0]}
                                     onEdit={hide => this.editTeams(hide)}

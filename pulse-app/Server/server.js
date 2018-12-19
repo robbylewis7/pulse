@@ -20,7 +20,7 @@ app.use(cors({
 
 
 const { router: usersRouter } = require('./users');
-// const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 
 app.use(function (req, res, next) {
@@ -33,13 +33,13 @@ app.use(function (req, res, next) {
   next();
 });
 
-//passport.use(localStrategy);
-//passport.use(jwtStrategy);
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
-//app.use('/api/users/', usersRouter);
-//app.use('/api/auth/', authRouter);
+app.use('/api/users/', usersRouter);
+app.use('/api/auth/', authRouter);
 //
-//const jwtAuth = passport.authenticate('jwt', { session: false });
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
 
 //////////////////
@@ -114,11 +114,11 @@ Teams.find().then(team => {
     
     
     
-app.put('/teams/:id', (req, res) => {
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+app.put('/teams/:user', (req, res) => {
+  if (!(req.params.user && req.body.user && req.params.user === req.body.user)) {
     const message =
-      `Request path id (${req.params.id}) and request body id ` +
-      `(${req.body.id}) must match`;
+      `Request path user (${req.params.user}) and request body user ` +
+      `(${req.body.user}) must match`;
     console.error(message);
     return res.status(400).json({ message: message });
   }
@@ -149,7 +149,7 @@ app.put('/teams/:id', (req, res) => {
       toUpdate[field] = req.body[field];
     }
   });
-      Teams.findByIdAndUpdate(req.params.id, { $set: toUpdate })
+      Teams.update({user: req.params.user}, {$set: toUpdate})
     .then(log => res.status(204).end())
     .catch(err => {
       console.error(err);

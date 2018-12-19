@@ -66,7 +66,7 @@ export default class AddTeam extends React.Component {
        let nbaTeams =  teamList.NBA.map((team, index) => {
             return(
             <div className="form-check" key={index}>
-            <img src={team.logo} className = "teamLogo"></img>
+                <img src={team.logo} className = "teamLogo"></img>
                 <label className="teamLabel">
                     <input type="checkbox" 
                            value = {team.team}
@@ -76,6 +76,7 @@ export default class AddTeam extends React.Component {
                 />
                     {team.team}
                 </label>
+
         </div>
         )})
 

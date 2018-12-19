@@ -4,13 +4,11 @@ import TopInfo from './top-info'
 import './signup.css'
 
 
-export default class Signup extends React.Component {
+export default class Login extends React.Component {
         constructor(props) {
           super(props);
           this.state = {
               username: '',
-              lastName: '',
-              firstName: '',
               password: ''
             };
       
@@ -24,38 +22,13 @@ export default class Signup extends React.Component {
             });
           }
 
-          addTeam(username){
-            fetch('http://localhost:8080/teams',{
-              method: "POST",
-              body: JSON.stringify({
-                  team: [],
-                  user: username
-              }),
-              headers: {
-                "Content-type": "application/json; charset=UTF-8"
-              }
-          })
-          .then(res => {
-              if (!res.ok) { return Promise.reject(res.statusText); }
-              return res.json()
-          })
-          .then(data => {
-              console.log(data);
-          })
-          .catch(error => {
-              console.log(error);
-          });
-          }
-
           handleSubmit(event) {
             alert('A name was submitted: ' + this.state.username);
             event.preventDefault();
-            fetch('http://localhost:8080/api/users',{
+            fetch('http://localhost:8080/api/auth/login',{
               method: "POST",
               body: JSON.stringify({
                   username: this.state.username,
-                  lastName: this.state.lastName,
-                  firstName: this.state.firstName,
                   password: this.state.password
               }),
               headers: {
@@ -68,11 +41,11 @@ export default class Signup extends React.Component {
           })
           .then(data => {
               console.log(data);
+              localStorage.username = this.state.username
           })
           .catch(error => {
               console.log(error);
           });
-          this.addTeam(this.state.username)
           }
       
         render() {
@@ -83,14 +56,6 @@ export default class Signup extends React.Component {
 
               <div id = "signup">
                 <form onSubmit={this.handleSubmit}>
-                  <label>
-                    First Name:
-                    <input type="text" name = "firstName" value={this.state.firstName} onChange={this.handleInputChange} />
-                  </label>
-                  <label>
-                    Last Name:
-                    <input type="text" name = "lastName" value={this.state.lastName} onChange={this.handleInputChange} />
-                  </label>
                   <label>
                     Username:
                     <input type="text" name = "username" value={this.state.username} onChange={this.handleInputChange} />

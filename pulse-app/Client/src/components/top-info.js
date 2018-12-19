@@ -29,6 +29,10 @@ export default class TopInfo extends React.Component {
                     <button className="loginButton">Sign Up</button>
                 </Link>
 
+                <Link to={'/login'}>
+                    <button className="loginButton">Login</button>
+                </Link>
+
             </div>
         );
     }
