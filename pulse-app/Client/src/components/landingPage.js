@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import LandingTop from './landing-top'
-import Pulse from './pulse.png'
+import MiddleContent from './middle-content'
+import BottomContent from './bottom-content'
 
 
 export default class Landing extends React.Component {
@@ -15,6 +16,8 @@ export default class Landing extends React.Component {
         return (
             <div>
                 <LandingTop />
+                <MiddleContent />
+                <BottomContent />
             </div>
         );
     }
