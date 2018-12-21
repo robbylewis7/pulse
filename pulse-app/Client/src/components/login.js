@@ -47,6 +47,10 @@ export default class Login extends React.Component {
               console.log(error);
           });
           }
+
+        handleClick = () => {
+            this.props.history.push("/main");
+        };
       
         render() {
 
@@ -56,15 +60,9 @@ export default class Login extends React.Component {
 
               <div id = "signup">
                 <form onSubmit={this.handleSubmit}>
-                  <label>
-                    Username:
-                    <input type="text" name = "username" value={this.state.username} onChange={this.handleInputChange} />
-                  </label>
-                  <label>
-                    Password:
-                    <input type="password" name = "password" value={this.state.password} onChange={this.handleInputChange} />
-                  </label>
-                  <input type="submit" value="Submit" />
+                    <input type="text" placeholder = "Username" name = "username" value={this.state.username} onChange={this.handleInputChange} className = "inputLogin"/>
+                    <input type="password" placeholder = "Password" name = "password" value={this.state.password} onChange={this.handleInputChange} className = "inputLogin"/>
+                  <input type="submit" onClick={this.handleClick} value="Submit" id = "submitButtonLogin" className="loginButton"/>
                 </form>
               </div>
             </div>

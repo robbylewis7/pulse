@@ -1,6 +1,7 @@
 import React from 'react';
 import Pulse from './pulse.png'
 import TopInfo from './top-info'
+import {withRouter} from "react-router-dom";
 import './signup.css'
 
 
@@ -74,6 +75,10 @@ export default class Signup extends React.Component {
           });
           this.addTeam(this.state.username)
           }
+
+          handleClick = () => {
+            this.props.history.push("/main");
+        };
       
         render() {
 
@@ -82,24 +87,13 @@ export default class Signup extends React.Component {
               <TopInfo />
 
               <div id = "signup">
+              
                 <form onSubmit={this.handleSubmit}>
-                  <label>
-                    First Name:
-                    <input type="text" name = "firstName" value={this.state.firstName} onChange={this.handleInputChange} />
-                  </label>
-                  <label>
-                    Last Name:
-                    <input type="text" name = "lastName" value={this.state.lastName} onChange={this.handleInputChange} />
-                  </label>
-                  <label>
-                    Username:
-                    <input type="text" name = "username" value={this.state.username} onChange={this.handleInputChange} />
-                  </label>
-                  <label>
-                    Password:
-                    <input type="password" name = "password" value={this.state.password} onChange={this.handleInputChange} />
-                  </label>
-                  <input type="submit" value="Submit" />
+                    <input type="text" placeholder = "First Name" name = "firstName" value={this.state.firstName} onChange={this.handleInputChange} className = "inputLogin"/>
+                    <input type="text" placeholder = "Last Name" name = "lastName" value={this.state.lastName} onChange={this.handleInputChange} className = "inputLogin"/>
+                    <input type="text" placeholder = "Username" name = "username" value={this.state.username} onChange={this.handleInputChange} className = "inputLogin" />
+                    <input type="password" placeholder = "Password" name = "password" value={this.state.password} onChange={this.handleInputChange} className = "inputLogin" />
+                  <input type="submit" onClick={this.handleClick} id = "submitButtonLogin" className="loginButton" value="Let's Do It" />
                 </form>
               </div>
             </div>

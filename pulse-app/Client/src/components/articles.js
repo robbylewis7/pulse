@@ -1,4 +1,5 @@
 import React from 'react';
+import refresh from './refresh.png'
 import './articles.css';
 
 
@@ -22,7 +23,7 @@ export default class Articles extends React.Component {
         var url = 'https://newsapi.org/v2/everything?' +
         `q="${teamsForNewsString}"&` +
         `from=${fromDate}&` +
-        'languege=eg&' +
+        'languege=en&' +
         'sortBy=publishedAt&' +
         'pageSize=100&' +
         'apiKey=508b1fda120441e68b78ef8483883676';
@@ -41,7 +42,7 @@ export default class Articles extends React.Component {
 
     componentDidMount(){
         
-        fetch('http://localhost:8080/teams')
+        fetch('http://localhost:8080/teams/'+localStorage.getItem('username'))
         .then(res => {
             if (!res.ok) { return Promise.reject(res.statusText); }
             return res.json()
@@ -64,12 +65,19 @@ export default class Articles extends React.Component {
         ;
     }
 
+    refreshPage() {
+        window.location.reload();
+      }
 
 
     render() {
 
+
+    
+      
+
         const {articles} = this.state;
-        console.log(articles)
+        console.log(this.props.teams[0])
         let test = articles.map((article, index)=>{
             return <div className = "article">
 
@@ -85,11 +93,12 @@ export default class Articles extends React.Component {
         })
 
        
+            return (
 
-        return (
-            <div className = "articles">
-               {test}
-            </div>
-        );
-    }
+                <div className = "articles">
+                {test}
+                </div>
+            );
+
+}
 }

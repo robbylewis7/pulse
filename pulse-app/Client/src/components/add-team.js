@@ -10,7 +10,7 @@ export default class AddTeam extends React.Component {
         super(props);
         this.state = {
             editing: false,
-            checked: false
+            checked: false,
         }
         this.handleCheck=this.handleCheck.bind(this);
     }
@@ -52,13 +52,13 @@ export default class AddTeam extends React.Component {
     render() {
 
     
-        
+
         if (!this.state.editing) {
-            return (
-                <div className="add-button">
-                    <button id = "addTeam" onClick={() => this.setEditing(true)}><img src={add} id="addImg"></img></button>
-                </div>
-            );
+                return (
+                    <div className="add-button">
+                        <button id = "addTeam" onClick={() => this.setEditing(true)}><img src={add} id="addImg"></img></button>
+                    </div>
+                );
         }
        
        let savedTeams = this.props.savedTeams.team;

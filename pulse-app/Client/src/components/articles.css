@@ -1,7 +1,7 @@
 .articleImg{
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    /* border-radius: 50%; */
     object-fit: cover;
     transition: opacity .25s ease-in-out;
 
@@ -9,11 +9,11 @@
 
 
 .content:hover .articleTitle{
-    display: block;
+    display: none;
 }
 
 .content:hover .source{
-    display: none;
+    display: block;
 }
 
 .content:hover .articleImg{
@@ -24,42 +24,43 @@
 
 .article{
     display: inline-flex;
+    margin: 0 3px;
 }
 
-.content{
-    width: 300px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 110px;
-    margin-right: 50px;
-    margin-left: 20px;
-}
 
-.source{
+.articleTitle{
     color: white;
-    background: rgba(45, 49, 66, 1);
+    background: rgba(45, 49, 66, .6);
     padding: 10px;
-    font-size: 14px;
+    font-size: 12px;
     position: absolute;
     width: 150px;
     text-align: center;
-    border-radius: 50px;
+    width: 400px;
+    height: 60px;
 }
 
-.articleTitle{
+.source{
+    display: none;
+    padding: 10px;
+    font-size: 12px;
+    position: absolute;
+    align-self: center;
+    border: 2px solid #4a4a4a;
+}
+
+/* .articleTitle{
     font-size: 14px;
     position: absolute;
     width: 10%;
     display: none;
-}
+} */
 
 #articleLink{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     text-transform: capitalize;
-    font-weight: 600;
 }
 
 p{

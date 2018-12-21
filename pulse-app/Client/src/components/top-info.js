@@ -24,14 +24,15 @@ export default class TopInfo extends React.Component {
                     </Link>
                 </div>
 
-
-                 <Link to={'/signup'}>
+            <div id = "buttons">
+                <Link to={'/signup'}>
                     <button className="loginButton">Sign Up</button>
                 </Link>
 
                 <Link to={'/login'}>
                     <button className="loginButton">Login</button>
                 </Link>
+            </div>
 
             </div>
         );

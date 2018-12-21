@@ -34,7 +34,7 @@ h2{
 
 #addTeam{
     background: #70AE6E;
-    border-radius: 560%;
+    border-radius: 50%;
     border: none;
     padding: 25px;
     margin-bottom: 20px;
@@ -91,4 +91,21 @@ h2{
     color: white;
     background: #70AE6E;
     cursor: pointer;
+}
+
+
+@media only screen and (max-width: 400px) {
+.teamLogo{
+    height: 12px;
+    width: 12px;
+    margin-right: 25px;
+}
+}
+
+
+@media only screen and (max-width: 900px) {
+
+.form-check{
+    justify-self: center;
+}
 }

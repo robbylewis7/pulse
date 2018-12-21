@@ -28,32 +28,32 @@ export default class Main extends React.Component {
         })
     }
 
-    // addTeam(team) {
-    //     this.setState({
-    //         teams: [...this.state.teams, {team}]
-    //     });
-    //     console.log('Teams',team)
-    //      fetch('http://localhost:8080/teams',{
-    //         method: "POST",
-    //         body: JSON.stringify({
-    //             team: team,
-    //             user: "james"
-    //         }),
-    //         headers: {
-    //           "Content-type": "application/json; charset=UTF-8"
-    //         }
-    //     })
-    //     .then(res => {
-    //         if (!res.ok) { return Promise.reject(res.statusText); }
-    //         return res.json()
-    //     })
-    //     .then(data => {
-    //         console.log(data);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     });
-    // }
+    addTeam(team) {
+        this.setState({
+            teams: [...this.state.teams, {team}]
+        });
+        console.log('Teams',team)
+         fetch('http://localhost:8080/teams',{
+            method: "POST",
+            body: JSON.stringify({
+                team: team,
+                user: "james"
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+        .then(res => {
+            if (!res.ok) { return Promise.reject(res.statusText); }
+            return res.json()
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
 
 
 
@@ -111,7 +111,7 @@ export default class Main extends React.Component {
 
     componentDidMount(){
         
-        fetch('http://localhost:8080/teams')
+        fetch('http://localhost:8080/teams/'+localStorage.getItem('username'))
         .then(res => {
             if (!res.ok) { return Promise.reject(res.statusText); }
             return res.json()
@@ -150,7 +150,7 @@ export default class Main extends React.Component {
                         <ul className="lists">
                             <li className="addTeams">
                                 <AddTeam
-                                    // onAdd={team => this.addTeam(team)}
+                                    onAdd={team => this.addTeam(team)}
                                     onUpdate={team => this.updateTeam(team)}
                                     savedTeams={this.state.teams[0]}
                                     onEdit={hide => this.editTeams(hide)}
@@ -164,7 +164,9 @@ export default class Main extends React.Component {
                         }
                         </ul>
                         {this.state.hide &&
-                        <Articles />
+                        <Articles
+                        teams={this.state.teams}
+                        />
                         }
                     </div>
             </div>

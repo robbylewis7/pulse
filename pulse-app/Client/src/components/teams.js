@@ -17,7 +17,9 @@ export default class Teams extends React.Component {
     render() {
 
         let teams = this.props.team;
+        
         let aggLeagues = [];
+        
 
         teamList.NBA.map((team) => {
             aggLeagues.push(team);
@@ -76,4 +78,5 @@ export default class Teams extends React.Component {
 
     }
 }
+
 
