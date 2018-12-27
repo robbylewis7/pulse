@@ -22,12 +22,11 @@ export default class AddTeam extends React.Component {
         var selectedTeams = Array.from(checked).map(function(team){
             return team.value
         });
-
         console.log('checked', selectedTeams)
-
-        if(this.props.savedTeams.team.length === 0) { 
-            this.props.onAdd(selectedTeams); 
-        } else { this.props.onUpdate(selectedTeams); }
+        this.props.onUpdate(selectedTeams)
+        this.setState({
+            editing: false
+        });
     }
 
     
@@ -39,6 +38,12 @@ export default class AddTeam extends React.Component {
     }
 
     handleCheck(){
+        var checked = document.querySelectorAll('.input:checked'); 
+        var selectedTeams = Array.from(checked).map(function(team){
+            return team.value
+        });
+
+        console.log('checked', selectedTeams);
         this.setState({
             checked: !this.state.checked
         });
@@ -56,7 +61,9 @@ export default class AddTeam extends React.Component {
         if (!this.state.editing) {
                 return (
                     <div className="add-button">
-                        <button id = "addTeam" onClick={() => this.setEditing(true)}><img src={add} id="addImg"></img></button>
+                        <button id = "addTeam" 
+                        onClick={() => this.setEditing(true)}
+                        ><img src={add} id="addImg"></img></button>
                     </div>
                 );
         }
@@ -131,7 +138,9 @@ export default class AddTeam extends React.Component {
 return (
 
 <div className="container">
-<button type="button" id = "cancel" onClick={() => this.setEditing(false)}>
+<button type="button" id = "cancel" 
+onClick={() => this.setEditing(false)}
+>
 <img src ={cancelIcon} id = "cancelImg"></img>
 </button>
 

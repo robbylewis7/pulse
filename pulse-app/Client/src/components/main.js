@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
 import Header from './header';
 import Teams from './teams';
 import AddTeam from './add-team';
@@ -33,11 +32,11 @@ export default class Main extends React.Component {
             teams: [...this.state.teams, {team}]
         });
         console.log('Teams',team)
-         fetch('http://localhost:8080/teams',{
+         fetch('http://localhost:8080/teams/'+localStorage.getItem('username'),{
             method: "POST",
             body: JSON.stringify({
                 team: team,
-                user: "james"
+                user: localStorage.getItem('username')
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8"
@@ -83,6 +82,22 @@ export default class Main extends React.Component {
         .catch(error => {
             console.log(error);
         });
+
+        // fetch('http://localhost:8080/teams/'+localStorage.getItem('username'))
+        // .then(res => {
+        //     console.log('refreshing', res)
+        //     if (!res.ok) { return Promise.reject(res.statusText); }
+        //     return res.json()
+        // })
+        // .then(team => {
+        //     this.setState({
+        //         teams: [...this.state.teams, {team}]
+        //     });
+        //     console.log(team);
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        // });
     }
 
 
@@ -133,6 +148,8 @@ export default class Main extends React.Component {
         })
         ;
     }
+
+    
     
 
 

@@ -11,11 +11,7 @@ h2{
 .teamLogo{
     height: 25px;
     width: 25px;
-    margin-right: 35px;
-}
-
-.teamLabel{
-    margin: 3px;
+    margin-right: 10px;
 }
 
 .form-check{
@@ -55,6 +51,10 @@ h2{
 #cancelImg{
     width: 40px;
     height: 40px;
+    border-radius: 50%;
+    border: 1px solid #4a4a4a;
+    margin-left: 20px;
+
 }
 
 #leagues{
@@ -62,19 +62,35 @@ h2{
     display: flex;
     justify-content: space-between;
     clear: both;
-    width: 100%;
-    border: 1px solid rgba(74, 74, 74, .5);
+    width: 90%;
+    border: 2px solid rgba(74, 74, 74, .5);
     padding: 50px;
 }
 
-.league{
-    margin: 0 10px;
-}
+
 
 .submitButton{
     text-align: center;
     margin: 20px;
 }
+
+form{
+    text-align: -webkit-center;
+}
+
+.form-check{
+    display: flex;
+    align-content: center;
+}
+
+.teamLabel{
+    display: flex;
+    align-content: center;
+
+
+}
+
+
 
 
 
@@ -84,6 +100,9 @@ h2{
     color: #4a4a4a;
     background: none;
     padding: 10px;
+    height: 50px;
+    font-family: 'Oakes';
+    font-size: 18px;
     border: 1px solid rgba(74, 74, 74, .5);
 }
 
@@ -108,4 +127,5 @@ h2{
 .form-check{
     justify-self: center;
 }
+
 }

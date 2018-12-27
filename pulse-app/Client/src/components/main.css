@@ -127,14 +127,20 @@ li, a, h1{
         margin-left: 0px;
         text-align: center;
     }
+
+    .teams{
+        margin: 15px auto;
+    }
+
+
+    .add-button{
+        text-align: center;
+        margin: 0px;
+    }
     
 }
 
 @media only screen and (max-width: 900px) {
-
-    .lists {
-        margin: 0 auto;
-    }
 
 
     #leagues{
@@ -143,6 +149,14 @@ li, a, h1{
         padding: 50px;
     }
 
+
+
+  }
+
+  @media only screen and (max-width: 750px) {
+    #mainLogoName{
+        display: none;
+    }
   }
 
   @media only screen and (max-width: 400px) {

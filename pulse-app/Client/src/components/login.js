@@ -1,6 +1,7 @@
 import React from 'react';
 import Pulse from './pulse.png'
 import TopInfo from './top-info'
+import { withRouter } from 'react-router-dom';
 import './signup.css'
 
 
@@ -23,7 +24,7 @@ export default class Login extends React.Component {
           }
 
           handleSubmit(event) {
-            alert('A name was submitted: ' + this.state.username);
+            console.log('A name was submitted: ' + this.state.username);
             event.preventDefault();
             fetch('http://localhost:8080/api/auth/login',{
               method: "POST",
@@ -43,14 +44,18 @@ export default class Login extends React.Component {
               console.log(data);
               localStorage.username = this.state.username
           })
+          .then(
+            this.redirectMain
+          )
           .catch(error => {
               console.log(error);
           });
           }
 
-        handleClick = () => {
-            this.props.history.push("/main");
-        };
+          redirectMain(){
+            window.location = '/main'
+          }
+
       
         render() {
 
@@ -62,7 +67,7 @@ export default class Login extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" placeholder = "Username" name = "username" value={this.state.username} onChange={this.handleInputChange} className = "inputLogin"/>
                     <input type="password" placeholder = "Password" name = "password" value={this.state.password} onChange={this.handleInputChange} className = "inputLogin"/>
-                  <input type="submit" onClick={this.handleClick} value="Submit" id = "submitButtonLogin" className="loginButton"/>
+                  <input type="submit" value="Submit" id = "submitButtonLogin" className="loginButton"/>
                 </form>
               </div>
             </div>

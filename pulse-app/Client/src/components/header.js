@@ -12,9 +12,10 @@ export default class Header extends React.Component {
 
     render() {
 
-        // this.handleClick = () => {
-        //     localStorage.clear();
-        // };
+        this.handleClick = () => {
+            localStorage.clear();
+            window.location = '/login';
+        };
 
 
         return (
@@ -26,7 +27,7 @@ export default class Header extends React.Component {
                 </div>
 
                 <Link to={'/main'}>
-                    <button id = "logoutButton">Logout</button>
+                    <button id = "logoutButton" onClick={this.handleClick}>Logout</button>
                 </Link>
             </div>
 

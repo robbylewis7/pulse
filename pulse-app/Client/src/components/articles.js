@@ -16,14 +16,14 @@ export default class Articles extends React.Component {
 
     getNews(teamsForNewsString){
         let fromDate = new Date(); 
-        let x = 5
+        let x = 2
         fromDate.setDate(fromDate.getDate() - x);
 
         console.log(fromDate);
         var url = 'https://newsapi.org/v2/everything?' +
         `q="${teamsForNewsString}"&` +
         `from=${fromDate}&` +
-        'languege=en&' +
+        'language=en&' +
         'sortBy=publishedAt&' +
         'pageSize=100&' +
         'apiKey=508b1fda120441e68b78ef8483883676';
@@ -77,7 +77,6 @@ export default class Articles extends React.Component {
       
 
         const {articles} = this.state;
-        console.log(this.props.teams[0])
         let test = articles.map((article, index)=>{
             return <div className = "article">
 
