@@ -1,5 +1,4 @@
 import React from 'react';
-import Delete from './delete.png';
 import './teams.css'
 import teamList from './teamList';
 
@@ -8,11 +7,6 @@ export default class Teams extends React.Component {
         super(props);
     }
 
-    
-    
-    
-    
-    
 
     render() {
 

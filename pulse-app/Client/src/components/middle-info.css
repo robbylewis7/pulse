@@ -1,10 +1,11 @@
 #middleInfo{
-    height: 800px;
+    height: 100%;
     background-color: #4a4a4a;
     display: flex;
     justify-content: center;
     justify-content: center;
     align-items: center;
+    padding-bottom: 100px;
 
 }
 
@@ -19,6 +20,8 @@
     line-height: 2em;
     text-align: center;
     font-family: Oakes;
+    padding: 0 20px;
+
 }
 
 #middleContent{
@@ -47,4 +50,29 @@
     background-color: white;
     color: #4a4a4a;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+
+    #middleInfo{
+        height: 100%;
+        background-color: #4a4a4a;
+        display: block;
+        text-align: center;
+        padding-bottom: 100px;
+    
+    }
+
+    #article{
+        width: 200px;
+        height: 200px;
+    }
+
+    #descrition{
+        font-size: 16px;
+        line-height: 2em;
+    }
+
+
+
 }

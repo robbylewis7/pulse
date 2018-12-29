@@ -7,3 +7,4 @@ describe('<LandingTop />', () => {
         shallow(<LandingTop />);
     })
 });
+

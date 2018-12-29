@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Route } from 'react-router-dom'
-import { withRouter } from 'react-router-dom'
 import Landing from './landingPage'
 import Signup from './signup'
 import Login from './login'

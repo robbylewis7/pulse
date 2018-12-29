@@ -7,3 +7,10 @@ describe('<Header />', () => {
         shallow(<Header />);
     })
 });
+
+
+it('Should have the logout button', () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper.find('button').text()
+    ).toEqual('Logout')
+});

@@ -1,7 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import { BrowserRouter as Router } from 'react-router-dom'
-import Pulse from './pulse.png'
 import TopInfo from './top-info'
 import MiddleInfo from './middle-info'
 

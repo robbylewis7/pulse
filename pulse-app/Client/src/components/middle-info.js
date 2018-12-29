@@ -1,8 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import { BrowserRouter as Router } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import Pulse from './pulse.png'
 import Article from './article.png'
 import './middle-info.css'
 

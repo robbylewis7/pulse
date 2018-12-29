@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import LandingTop from './landing-top'
 import MiddleContent from './middle-content'
 import BottomContent from './bottom-content'

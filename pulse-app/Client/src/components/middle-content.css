@@ -10,6 +10,8 @@
     font-family: Oakes;
     font-size: 24px;
     color: #4a4a4a;
+    padding: 0 20px;
+    line-height: 2em;
 }
 
 .teamEx{
@@ -46,6 +48,14 @@
         text-align: center;
     }
 
+    #middleDescription{
+        text-align: center;
+        margin-top: 150px;
+        font-family: Oakes;
+        font-size: 16px;
+        color: #4a4a4a;
+    }
+
     .teamEx{
         width: 50%;
         margin: 15px  auto;
@@ -59,6 +69,7 @@
 
     }
 }
+
 
 
 

@@ -1,7 +1,5 @@
 import React from 'react';
-import Pulse from './pulse.png'
 import TopInfo from './top-info'
-import  { Redirect } from 'react-router-dom'
 import './signup.css'
 
 
@@ -73,8 +71,15 @@ export default class Signup extends React.Component {
           })
           .catch(error => {
               console.log(error);
-          });
+          })          
+          .then(
+            this.redirectLogin
+          )
           this.addTeam(this.state.username)
+          }
+
+          redirectLogin(){
+            window.location = '/login'
           }
 
 
@@ -91,8 +96,8 @@ export default class Signup extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" placeholder = "First Name" name = "firstName" value={this.state.firstName} onChange={this.handleInputChange} className = "inputLogin"/>
                     <input type="text" placeholder = "Last Name" name = "lastName" value={this.state.lastName} onChange={this.handleInputChange} className = "inputLogin"/>
-                    <input type="text" placeholder = "Username" minlength = "1" name = "username" value={this.state.username} onChange={this.handleInputChange} className = "inputLogin" required />
-                    <input type="password" placeholder = "Password" minlength = "8" maxlength = "72" name = "password" value={this.state.password} onChange={this.handleInputChange} className = "inputLogin" required/>
+                    <input type="text" placeholder = "Username" minLength = "1" name = "username" value={this.state.username} onChange={this.handleInputChange} className = "inputLogin" required />
+                    <input type="password" placeholder = "Password" minLength = "8" maxLength = "72" name = "password" value={this.state.password} onChange={this.handleInputChange} className = "inputLogin" required/>
                   <input type="submit" id = "submitButtonLogin" className="loginButton" value="Let's Do It" />
                 </form>
               </div>

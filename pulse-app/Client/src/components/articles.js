@@ -1,5 +1,4 @@
 import React from 'react';
-import refresh from './refresh.png'
 import './articles.css';
 
 
@@ -16,15 +15,28 @@ export default class Articles extends React.Component {
 
     getNews(teamsForNewsString){
         let fromDate = new Date(); 
-        let x = 2
+        let x = 5
         fromDate.setDate(fromDate.getDate() - x);
+
+        var dd = fromDate.getDate();
+        var mm = fromDate.getMonth() + 1; 
+        var yyyy = fromDate.getFullYear();
+        if(dd<10) {
+            dd = '0'+dd
+        } 
+        
+        if(mm<10) {
+            mm = '0'+mm
+        } 
+        
+        fromDate = yyyy + '-' + mm + '-' + dd;
 
         console.log(fromDate);
         var url = 'https://newsapi.org/v2/everything?' +
         `q="${teamsForNewsString}"&` +
         `from=${fromDate}&` +
         'language=en&' +
-        'sortBy=publishedAt&' +
+        'sortBy=relevancy&' +
         'pageSize=100&' +
         'apiKey=508b1fda120441e68b78ef8483883676';
 
@@ -78,7 +90,7 @@ export default class Articles extends React.Component {
 
         const {articles} = this.state;
         let test = articles.map((article, index)=>{
-            return <div className = "article">
+            return <div className = "article" key={index}>
 
                         <div className = "content">  
                             <a href={article.url} id = "articleLink" target="_blank">

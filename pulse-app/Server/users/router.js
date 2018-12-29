@@ -129,6 +129,7 @@ router.post('/', jsonParser, (req, res) => {
         // error because something unexpected has happened
         if (err.reason === 'ValidationError') {
             return res.status(err.code).json(err);
+            // return res.json(err);
         }
         res.status(500).json({code: 500, message: 'Internal server error'});
     });

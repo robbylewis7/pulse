@@ -49,3 +49,20 @@
     color: #4a4a4a;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 700px) {
+    .loginButton{
+        font-size: 10px;
+        width: 90px;
+        height: 40px;
+    }
+
+    #frontPageLogo{
+        width: 100px;
+        Height: 100px;
+    }
+
+    .frontPageName{
+        font-size: 50px;
+        }
+}
