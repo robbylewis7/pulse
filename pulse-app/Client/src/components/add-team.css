@@ -28,11 +28,20 @@ h2{
     cursor: pointer;
 }
 
+#team{
+    color: #4a4a4a;
+    margin-right: 20px;
+}
+
+.add-button{
+    display: flex;
+}
+
 #addTeam{
     background: #70AE6E;
     border-radius: 50%;
     border: none;
-    padding: 25px;
+    padding: 15px;
     margin-bottom: 20px;
 }
 

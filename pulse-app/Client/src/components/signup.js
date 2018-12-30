@@ -10,17 +10,28 @@ export default class Signup extends React.Component {
               username: '',
               lastName: '',
               firstName: '',
-              password: ''
+              password: '',
+              showError: false,
+              errorMessage: ''
             };
       
           this.handleInputChange = this.handleInputChange.bind(this);
           this.handleSubmit = this.handleSubmit.bind(this);
+          this.handleFocus = this.handleFocus.bind(this);
+
         }
       
         handleInputChange(event) {
             this.setState({ 
-                [event.target.name]: event.target.value 
+                [event.target.name]: event.target.value,
+                showError: false
             });
+          }
+
+        handleFocus(){
+            this.setState({
+              showError: false
+            })
           }
 
           addTeam(username){
@@ -63,18 +74,22 @@ export default class Signup extends React.Component {
               }
           })
           .then(res => {
-              if (!res.ok) { return Promise.reject(res.statusText); }
-              return res.json()
+            console.log(res);
+            // if (!res.ok) { return Promise.reject(res.statusText); }
+              return res.json();
           })
           .then(data => {
-              console.log(data);
+            console.log(data);
+            if (!data.ok) { return Promise.reject(data); }
+            this.redirectLogin();
           })
           .catch(error => {
               console.log(error);
+              this.setState({
+                showError: true,
+                errorMessage: error.message
+              })
           })          
-          .then(
-            this.redirectLogin
-          )
           this.addTeam(this.state.username)
           }
 
@@ -94,9 +109,13 @@ export default class Signup extends React.Component {
               <div id = "signup">
               
                 <form onSubmit={this.handleSubmit}>
+                {this.state.showError &&
+                      <p className = "error">{this.state.errorMessage}</p>
+                    
+                    }
                     <input type="text" placeholder = "First Name" name = "firstName" value={this.state.firstName} onChange={this.handleInputChange} className = "inputLogin"/>
                     <input type="text" placeholder = "Last Name" name = "lastName" value={this.state.lastName} onChange={this.handleInputChange} className = "inputLogin"/>
-                    <input type="text" placeholder = "Username" minLength = "1" name = "username" value={this.state.username} onChange={this.handleInputChange} className = "inputLogin" required />
+                    <input type="text" placeholder = "Username" minLength = "1" name = "username" value={this.state.username} onFocus={this.handleFocus} onChange={this.handleInputChange} className = "inputLogin" required />
                     <input type="password" placeholder = "Password" minLength = "8" maxLength = "72" name = "password" value={this.state.password} onChange={this.handleInputChange} className = "inputLogin" required/>
                   <input type="submit" id = "submitButtonLogin" className="loginButton" value="Let's Do It" />
                 </form>

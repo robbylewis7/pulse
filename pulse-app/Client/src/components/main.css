@@ -123,6 +123,10 @@ li, a, h1{
         display: inline-block;
     }
 
+    .add-button{
+        justify-content: center;
+    }
+
     .articles{
         margin-top: 50px;
         margin-left: 0px;

@@ -15,7 +15,6 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
   },
- 
   "scripts": {
     "test": "mocha --exit",
     "start": "node server.js"
