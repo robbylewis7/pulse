@@ -46,9 +46,6 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 //End-Points
 //////////////////
 
-app.get('/', function(req, res){
-  res.redirect('/');
-});
 
 app.get('/teams', (req, res) => {
       Teams.find()
