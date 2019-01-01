@@ -23,11 +23,11 @@ describe('Static assets', function () {
             });
     });
 
-    it('GET to /main should return status 200 and html', function () {
-        return chai.request(app)
-            .get('/main')
-            .then(function (res) {
-                expect(res).to.have.status(200);
-            });
-    });
+    // it('GET to /main should return status 200 and html', function () {
+    //     return chai.request(app)
+    //         .get('/teams')
+    //         .then(function (res) {
+    //             expect(res).to.have.status(200);
+    //         });
+    // });
 });
