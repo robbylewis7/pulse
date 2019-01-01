@@ -20,7 +20,7 @@ describe('Teams', function() {
 
     it('should list Teams on GET', function() {
         return chai.request(app)
-            .get('/logs/user/:user')
+            .get('/teams/:user')
             .then(res => {
 
             res.should.have.status(200);

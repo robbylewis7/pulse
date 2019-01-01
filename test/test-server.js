@@ -20,7 +20,6 @@ describe('Static assets', function () {
             .get('/')
             .then(function (res) {
                 expect(res).to.have.status(200);
-                expect(res).to.be.html;
             });
     });
 
@@ -29,7 +28,6 @@ describe('Static assets', function () {
             .get('/main')
             .then(function (res) {
                 expect(res).to.have.status(200);
-                expect(res).to.be.html;
             });
     });
 });
