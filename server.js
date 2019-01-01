@@ -8,6 +8,8 @@ const cors = require('cors');
 const {PORT, DATABASE_URL} = require('./config');
 const {Teams} = require('./models');
 const passport = require('passport');
+const favicon = require('express-favicon');
+const path = require('path');
 
 
 app.use(express.static('public'));
@@ -46,6 +48,10 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 //End-Points
 //////////////////
 
+app.use(favicon(__dirname + '/build/favicon.ico'));
+// the __dirname is the current directory from where the script is running
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
