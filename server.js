@@ -54,7 +54,7 @@ app.use(favicon(__dirname + 'Client/public/favicon.ico'));
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'Client/public/')));
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'Client/public/', 'index.html'));
+  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
 
