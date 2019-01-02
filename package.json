@@ -22,7 +22,7 @@
   "scripts": {
     "test": "mocha --exit",
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install"
+    "heroku-postbuild": "cd Client && npm install"
   },
   "author": "",
   "license": "ISC",
