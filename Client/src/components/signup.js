@@ -77,11 +77,11 @@ export default class Signup extends React.Component {
             console.log(res);
             // if (!res.ok) { return Promise.reject(res.statusText); }
               return res.json();
+              this.redirectLogin();
           })
           .then(data => {
             console.log(data);
             if (!data.ok) { return Promise.reject(data); }
-            this.redirectLogin();
           })
           .catch(error => {
               console.log(error);
