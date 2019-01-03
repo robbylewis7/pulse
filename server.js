@@ -178,9 +178,9 @@ app.delete('/teams/:id', (req, res) => {
     });
 });
 
-app.use('*', function(req, res) {
-  res.status(404).json({ message: 'Not Found' });
-});
+// app.use('*', function(req, res) {
+//   res.status(404).json({ message: 'Not Found' });
+// });
 
 //News API
 
